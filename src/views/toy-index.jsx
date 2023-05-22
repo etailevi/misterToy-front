@@ -79,7 +79,7 @@ export default function ToyIndex() {
             <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}
-                onEditToy={(toy) => navigate(`/toy/${toy._id}`)}
+                onEditToy={(toy) => navigate(`/toy/:${toy._id}`)}
             // addToCart={addToCart}
             />
         </section>
