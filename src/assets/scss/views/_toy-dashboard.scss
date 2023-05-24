@@ -1,0 +1,19 @@
+.toy-dashboard {
+    @include flex();
+    @include wrap();
+    @include clean-list();
+    @include center();
+    gap: rem(50px);
+    margin: rem(50px);
+    li {
+        width: rem(600px);
+        height: rem(600px);
+        background-color: $clr3;
+        box-shadow: rgba(184, 190, 196, 0.5) 0px 8px 12px;
+        border-radius: em(32px);
+        padding: rem(40px);
+        h3{
+            text-align: center;
+        }
+    }
+}

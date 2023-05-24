@@ -1,0 +1,37 @@
+.app-header {
+    @include flex();
+    @include align-center();
+    @include between();
+    padding: rem(30px) rem(60px);
+    background-color: $clr5;
+    box-shadow: rgba(184, 190, 196, 0.5) 0px 8px 12px;
+}
+
+.main-nav {
+    @include flex();
+    @include between();
+    gap: rem(60px);
+    a {
+        transition: .2s ease-in;
+        font-weight: 700;
+        font-size: rem(30px);
+        padding: rem(15px);
+        border-radius: em(15px);
+
+        &.active{
+            background-color: $clr2;
+            color: white;
+        }
+
+        &:hover {
+            background-color: $clr2;
+            color: white;
+        }
+    }
+}
+
+.logo {
+    img {
+        height: rem(100px);
+    }
+}

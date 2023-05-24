@@ -16,6 +16,8 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getLabels,
+    getToysPerInStock,
+    getAvgPricePerLabel
 }
 
 function query(filterBy = {}) {
@@ -87,6 +89,63 @@ function getDefaultFilter() {
 
 function getLabels() {
     return labels
+}
+
+function getToysPerInStock(toys) {
+    const toyCountMap = toys.reduce((acc, toy) => {
+        toy.labels.forEach(label => {
+            if (acc[label]) {
+                if (toy.inStock === 'true') {
+                    acc[label].inStock++
+                    acc[label].amount++
+                }
+            } else {
+                if (toy.inStock === 'true') {
+                    acc[label] = { inStock: 1 }
+                } else {
+                    acc[label] = { inStock: 0 }
+                }
+                acc[label].amount = 1
+            }
+        });
+        return acc
+    }, {})
+    const keyLabels = Object.keys(toyCountMap)
+    const valueLabels = Object.values(toyCountMap)
+    const percent = valueLabels.map(value => {
+        return +(value.inStock * 100 / value.amount).toFixed(0)
+    })
+    const res = {
+        labels: keyLabels,
+        percent
+    }
+    return res
+}
+
+function getAvgPricePerLabel(toys) {
+    const totalPriceByLabel = toys.reduce((acc, toy) => {
+        if (toy.labels.length) {
+            toy.labels.forEach(label => {
+                if (acc[label]) acc[label].price += toy.price
+                if (!acc[label]) acc[label] = {
+                    count: 0,
+                    price: toy.price,
+                }
+                acc[label].count++
+            })
+        }
+        return acc
+    }, {})
+    const labels = Object.keys(totalPriceByLabel)
+    const values = Object.values(totalPriceByLabel)
+    const priceAvg = values.map(value => {
+        return +(value.price/value.count).toFixed(0)
+    })
+    const res = {
+        labels,
+        priceAvg
+    }
+    return res
 }
 
 // TEST DATA
