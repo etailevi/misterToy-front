@@ -2,7 +2,7 @@
     @include flex();
     @include align-center();
     @include between();
-    padding: rem(30px) rem(60px);
+    padding: rem(20px);
     background-color: $clr5;
     box-shadow: rgba(184, 190, 196, 0.5) 0px 8px 12px;
 }
@@ -11,6 +11,7 @@
     @include flex();
     @include between();
     gap: rem(60px);
+
     a {
         transition: .2s ease-in;
         font-weight: 700;
@@ -18,7 +19,7 @@
         padding: rem(15px);
         border-radius: em(15px);
 
-        &.active{
+        &.active {
             background-color: $clr2;
             color: white;
         }
@@ -31,6 +32,12 @@
 }
 
 .logo {
+    @include flex();
+    @include center();
+    h1 {
+        font-size: rem(35px);
+        color: $clr4;
+    }
     img {
         height: rem(100px);
     }

@@ -32,7 +32,7 @@ function getStyles(name, personName, theme) {
     };
 }
 
-export default function LabelSelect({ labels, onSelectChange, onSetFilter }) {
+export default function LabelSelect({ labels, onSelectChange }) {
     const theme = useTheme()
     const labelList = toyService.getLabels()
 

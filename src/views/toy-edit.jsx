@@ -1,62 +1,79 @@
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
-import { toyService } from '../services/toy.service.js'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { removeToy, saveToy } from '../store/toy.action.js'
+import { toyService } from "../services/toy.service.js"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { useForm } from "../customHooks/useForm.js"
+import LabelSelect from "../cmps/label-select.jsx"
 
-export default function ToyEdit({ toy }) {
-    const [toyToEdit, setToyToEdit] = useState({})
-    const [toyEditInput, setToyEditInput] = useState('')
-
-    const params = useParams()
+export default function ToyEdit() {
+    // const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
+    const [toyToEdit, setToyToEdit, handleChange] = useForm(toyService.getEmptyToy())
     const navigate = useNavigate()
+    const { toyId } = useParams()
 
     useEffect(() => {
-        toyService.getById(params.toyId)
-            .then((toy) => {
-                setToyToEdit(toy)
-            })
+        if (!toyId) return
+        loadToy()
+        // eslint-disable-next-line
     }, [])
 
-    function onEditToy() {
-        toyToEdit.txt = toyEditInput
-        saveToy(toyToEdit)
-            .then((savedToy) => {
-                showSuccessMsg(`Updated toy: ${savedToy.txt}`)
-                navigate(`/toy`)
+    function loadToy() {
+        toyService.getById(toyId)
+            .then((toy) => setToyToEdit(toy))
+            .catch((err) => {
+                console.log('Had issues in toy details', err)
+                navigate('/toy')
+            })
+    }
+
+
+    function onSaveToy(ev) {
+        ev.preventDefault()
+        toyService.save(toyToEdit)
+            .then((toy) => {
+                console.log('toy saved', toy);
+                showSuccessMsg('Toy saved!')
+                navigate('/toy')
             })
             .catch(err => {
-                showErrorMsg('Cannot update toy')
+                console.log('err', err)
+                showErrorMsg('Cannot save toy')
             })
     }
 
-    function onRemoveToy(toyId) {
-        removeToy(toyId)
-            .then(() => {
-                showSuccessMsg('Toy removed')
-                navigate(`/toy`)
-            })
-            .catch(err => {
-                showErrorMsg('Cannot remove toy')
-            })
-    }
+    function onLabelSelect({ target }) {
+        const val = target.value
+        setToyToEdit(prev => ({...prev, labels: val}))
+}
 
-    function handleChange({ target }) {
-        setToyEditInput(target.value)
-    }
+return <section className="toy-edit">
+    <h2>{toyToEdit.id ? 'Edit this toy' : 'Add a new toy'}</h2>
 
-    return (
-        <section className='toy-edit'>
-            <h1>{toyToEdit.txt}</h1>
-            <form onSubmit={onEditToy}>
-                <input type="text" value={toyEditInput} onChange={handleChange} />
-                <button>Save</button>
-            </form>
-            <button onClick={() => {
-                onRemoveToy(toyToEdit._id)
-            }}>x</button>
-        </section>
+    <form onSubmit={onSaveToy}>
+        <label htmlFor="name">Name: </label>
+        <input type="text"
+            name="name"
+            id="name"
+            placeholder="Enter Name..."
+            value={toyToEdit.name}
+            onChange={handleChange}
+        />
+        <label htmlFor="price">Price : </label>
+        <input type="number"
+            name="price"
+            id="price"
+            placeholder="Enter price"
+            value={toyToEdit.price}
+            onChange={handleChange}
+        />
 
-    )
+        <LabelSelect labels={toyToEdit.labels} onSelectChange={onLabelSelect} />
+
+        <div>
+            <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
+            <Link to="/toy">Cancel</Link>
+        </div>
+    </form>
+</section>
 }

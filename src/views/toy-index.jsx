@@ -72,8 +72,7 @@ export default function ToyIndex() {
     return (
         <section className='toy-index view'>
             <div>toy-index</div>
-            <Link to={`/toy/edit`}>Add Toy</Link>
-            <button onClick={onAddToy}>Add Toy</button>
+           <button><Link to={`/toy/edit`}>Add Toy</Link></button>
             {isLoading && <div>Loading...</div>}
             <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
             <ToyList

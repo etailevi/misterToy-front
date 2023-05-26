@@ -1,15 +1,17 @@
 // Setup 
 @import 'setup/variables';
 @import 'setup/functions';
+// @import 'setup/mixins';
 //  @import './setup/fonts';
 
 // Basics 
 @import "basics/base";
 @import "basics/helpers";
-@import "basics/layout";
+// @import "basics/layout";
 
 // Views 
 @import 'views/toy-index'; 
+@import 'views/about'; 
 @import 'views/toy-edit'; 
 @import 'views/toy-details'; 
 @import 'views/toy-dashboard'; 

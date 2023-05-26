@@ -94,6 +94,8 @@ export default function Dashboard() {
     };
 
     return (
+        <section className='dash-container'>
+            <h1>Dashboard</h1>
             <ul className="toy-dashboard">
                 <li>
                     <h3>Percentage of toys that are in stock by labels</h3>
@@ -108,5 +110,6 @@ export default function Dashboard() {
                     <Doughnut data={priceData} width={'100%'} height={'100%'}/>
                 </li>
             </ul>
+        </section>
     )
 }

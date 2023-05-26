@@ -9,6 +9,7 @@ import AboutUs from './views/about.jsx';
 import ToyIndex from './views/toy-index';
 import ToyEdit from './views/toy-edit';
 import Dashboard from './views/toy-dashboard';
+import ToyDetails from './views/toy-details';
 
 export default function App() {
   return (
@@ -21,9 +22,10 @@ export default function App() {
               <Route element={<HomePage />} path="/" />
               <Route element={<AboutUs />} path="/about" />
               <Route element={<ToyIndex />} path="/toy" />
-              <Route element={<ToyEdit />} path="/toy/:todoId" />
+              <Route element={<ToyEdit />} path="/toy/edit" />
+              <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
+              <Route element={<ToyDetails />} path="/toy/:toyId" />
               <Route element={<Dashboard />} path="/dashboard" />
-              {/* <Route element={<ToyEdit />} path="/toy/edit/:toyId" /> */}
             </Routes>
           </main>
           {/* <AppFooter /> */}

@@ -5,7 +5,7 @@ import GoogleMapReact from 'google-map-react';
 import { useState } from 'react'
 
 function Marker() {
-    return <div style={{ height: '1em', width: '1em', borderRadius: '50%', background: 'red' }}></div>
+    return <div>📍</div>
 }
 
 export default function Map() {
@@ -39,17 +39,16 @@ export default function Map() {
 
     return (
         // Important! Always set the container height explicitly
-        <div>
+        <section className="map-container">
             {branches.map((branch) => {
                 return (
-                    <button key={branch.city} onClick={() => setCenter(branch.position)}>
+                    <button className="btn-city" key={branch.city} onClick={() => setCenter(branch.position)}>
                         {branch.city}
                     </button>
                 );
             })}
 
-
-            <div style={{ height: '100vh', width: '100%' }}>
+            <div className="map">
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyBjcHet6daOdcOGE772Rzv9XiU7oyZnZos" }}
                     defaultCenter={center}
@@ -61,6 +60,6 @@ export default function Map() {
                     })}
                 </GoogleMapReact>
             </div>
-        </div>
+        </section>
     );
 }

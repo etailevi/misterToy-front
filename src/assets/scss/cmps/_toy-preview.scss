@@ -1,0 +1,59 @@
+.toy-preview {
+    h4 {
+        text-align: center;
+        font-size: rem(24px);
+        color: white;
+        text-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
+    }
+
+    img {
+        border-radius: 0 0 1em 1em;
+    }
+
+    .preview-details {
+        @include flex();
+        @include column();
+
+        p {
+            text-align: center;
+            margin: rem(10px);
+            font-weight: 600;
+            font-size: rem(20px);
+        }
+        .preview-labels {
+            @include flex();
+            @include wrap();
+            // gap: rem(10px);
+            label {
+                align-self: center;
+                background-color: $clr1;
+                color: white;
+                // font-weight: bold;
+                margin-inline-end: rem(5px);
+                padding: rem(5px);
+                border-radius: rem(5px);
+            }
+
+        }
+        .btn-preview-wrapper {
+            @include flex();
+            // @include between();
+            gap: rem(10px);
+            button {
+                padding: rem(10px);
+                margin-block: rem(10px);
+                &:last-child {
+                    background-color: tomato;
+                    color: white;
+                    padding-inline: rem(17px);
+                }
+            }
+        }
+        .btn-buy {
+            padding: rem(10px);
+            &:hover {
+                background-color: darken($clr6, 5);
+            }
+        }
+    }
+}

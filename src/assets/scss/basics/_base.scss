@@ -2,19 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Varela Round', sans-serif;
 }
 
 html {
   font-size: 62.5%;
-  font-family: "Lato", sans-serif;
   background-color: lighten($clr6, 3%);
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: "Varela Round", sans-serif;
 }
 
 body,
