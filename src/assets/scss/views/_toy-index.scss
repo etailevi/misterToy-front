@@ -1,0 +1,33 @@
+.toy-index{
+
+
+
+    .paging-container{
+        width: fit-content;
+        margin: auto;
+        padding: rem(5px);
+        background-color: rgba(211, 211, 211, 0.2);
+        border-radius: rem(12px);
+        span {
+            margin-inline: rem(32px);
+            font-size: rem(25px);
+            font-weight: 700;
+        }
+        button {
+            width: rem(30px);
+            height: rem(30px);
+            background-color: $clr3;
+            color: white;
+            margin: rem(2px);
+
+            &:hover{
+                background-color: lighten($clr2, 3%);
+            }
+
+            &:disabled {
+                filter: brightness(85%);
+                color: rgb(66, 65, 65);
+            }
+        }
+    }
+}

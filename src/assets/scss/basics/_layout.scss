@@ -16,9 +16,9 @@
   }
 
   > *:not(.full) {
-      display: grid;
-      grid-auto-flow: dense;
-      grid-template-columns: repeat( 6, 1fr );
+      // display: grid;
+      // grid-auto-flow: dense;
+      // grid-template-columns: repeat( 6, 1fr );
   }
 
   @include for-narrow-layout {

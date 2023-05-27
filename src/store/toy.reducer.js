@@ -3,6 +3,8 @@ export const REMOVE_TOY = 'REMOVE_TOY'
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
 
+export const SET_PAGE_COUNT = 'SET_PAGE_COUNT'
+
 export const SET_FILTER = 'SET_FILTER'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const SET_CART_IS_SHOWN = 'SET_CART_IS_SHOWN'
@@ -17,6 +19,7 @@ const initialState = {
     isCartShown: false,
     shoppingCart: [],
     filterBy: { name: '', inStock: 'all', labels: [], pageIdx: 0 },
+    pages: ''
 }
 
 export function toyReducer(state = initialState, action) {
@@ -28,8 +31,10 @@ export function toyReducer(state = initialState, action) {
         // Toys
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
+        case SET_PAGE_COUNT:
+            return { ...state, pages: action.pages }
         case SET_TOYS:
-            return { ...state, toys: action.toys }
+            return { ...state, toys: action.toys.toysToDisplay }
         case REMOVE_TOY:
             toys = state.toys.filter(t => t._id !== action.toyId)
             return { ...state, toys }

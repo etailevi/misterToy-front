@@ -5,9 +5,11 @@
     @include clean-list();
     padding: rem(24px);
     gap: rem(30px);
+
     li {
+        width: rem(350px);
         border-radius: rem(16px);
-        background-color: $clr7;
+        background-color: lighten($clr7, 2%);
         padding: rem(16px);
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px;
     }

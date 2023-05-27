@@ -1,13 +1,17 @@
 import { toyService } from "../services/toy.service.js"
 import { store } from './store.js'
-import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_IS_LOADING, UPDATE_TOY, SET_FILTER } from './toy.reducer.js'
+import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_IS_LOADING, UPDATE_TOY, SET_FILTER, SET_PAGE_COUNT } from './toy.reducer.js'
 
 
 
-export function loadToys(filterBy) {
+export function loadToys(filterBy, sortBy) {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-    return toyService.query(filterBy)
+    return toyService.query(filterBy, sortBy)
         .then((toys) => {
+            console.log(toys)
+            const pages = toys.pages
+
+            store.dispatch({ type: SET_PAGE_COUNT, pages })
             store.dispatch({ type: SET_TOYS, toys })
         })
         .catch(err => {

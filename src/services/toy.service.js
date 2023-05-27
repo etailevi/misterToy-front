@@ -20,8 +20,8 @@ export const toyService = {
     getAvgPricePerLabel
 }
 
-function query(filterBy = {}) {
-    return httpService.get(BASE_URL, filterBy)
+function query(filterBy = {}, sortBy) {
+    return httpService.get(BASE_URL, { filterBy, sortBy })
 }
 function getById(toyId) {
     return httpService.get(BASE_URL + toyId)

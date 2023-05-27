@@ -79,8 +79,10 @@ export default function Dashboard() {
                     'rgba(153, 102, 255)',
                     'rgba(255, 159, 64)',
                     'rgba(255, 159, 190)',
+                    'rgba(150, 170, 50)',
                 ],
                 borderColor: [
+                    '#FFDEB4',
                     '#FFDEB4',
                     '#FFDEB4',
                     '#FFDEB4',
