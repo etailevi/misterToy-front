@@ -1,0 +1,41 @@
+.filter-container {
+    @include flex();
+    @include wrap();
+    @include center();
+    gap: rem(10px);
+    padding-block-start: rem(7px);
+
+    .search-bar {
+        input {
+            outline: 1px solid rgba(183, 175, 174, 0.726);
+            border: none;
+            border-radius: rem(4px);
+            padding: rem(20px);
+            height: rem(72px);
+            width: rem(300px);
+            margin: rem(5px);
+            font-size: rem(17px);
+            background-color: transparent;
+
+            &:hover {
+                outline: 1px solid black;
+            }
+
+            &:focus {
+                outline: 2px solid rgb(86, 86, 213);
+            }
+        }
+    }
+}
+
+.in-stock-filter {
+    text-align: center;
+    @include flex();
+    @include wrap();
+    @include center();
+    gap: rem(10px);
+    margin-block-start: rem(14px);
+    label {
+        font-size: rem(20px);
+    }
+}

@@ -44,36 +44,38 @@ export default function ToyEdit() {
 
     function onLabelSelect({ target }) {
         const val = target.value
-        setToyToEdit(prev => ({...prev, labels: val}))
-}
+        setToyToEdit(prev => ({ ...prev, labels: val }))
+    }
 
-return <section className="toy-edit">
-    <h2>{toyToEdit.id ? 'Edit this toy' : 'Add a new toy'}</h2>
+    return (
+        <section className="toy-edit-container">
+            <h2>{toyToEdit._id ? 'Edit this toy' : 'Add a new toy'}</h2>
 
-    <form onSubmit={onSaveToy}>
-        <label htmlFor="name">Name: </label>
-        <input type="text"
-            name="name"
-            id="name"
-            placeholder="Enter Name..."
-            value={toyToEdit.name}
-            onChange={handleChange}
-        />
-        <label htmlFor="price">Price : </label>
-        <input type="number"
-            name="price"
-            id="price"
-            placeholder="Enter price"
-            value={toyToEdit.price}
-            onChange={handleChange}
-        />
-
-        <LabelSelect labels={toyToEdit.labels} onSelectChange={onLabelSelect} />
-
-        <div>
-            <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
-            <Link to="/toy">Cancel</Link>
-        </div>
-    </form>
-</section>
+            <form onSubmit={onSaveToy} className="toy-edit" >
+                <div className="name-price-input">
+                    <label htmlFor="name"> </label>
+                    <input type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Enter Name..."
+                        value={toyToEdit.name}
+                        onChange={handleChange}
+                    /></div>
+                <div className="name-price-input">
+                    <label htmlFor="price"></label>
+                    <input type="number"
+                        name="price"
+                        id="price"
+                        placeholder="Enter price"
+                        value={toyToEdit.price}
+                        onChange={handleChange}
+                    /></div>
+                <LabelSelect labels={toyToEdit.labels} onSelectChange={onLabelSelect} />
+                <div>
+                    <Link to="/toy" className="form-btn add-save">{toyToEdit._id ? 'Save' : 'Add'}</Link>
+                    <Link to="/toy" className="form-btn close">Cancel</Link>
+                </div>
+            </form>
+        </section>
+    )
 }

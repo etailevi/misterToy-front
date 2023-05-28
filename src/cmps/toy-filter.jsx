@@ -28,7 +28,7 @@ export default function ToyFilter({ onSetFilter, filterBy }) {
         }
     }, [isWriting])
 
-    function onNameChange({target}) {
+    function onNameChange({ target }) {
         setIsWriting(true)
         setName(target.value)
     }
@@ -54,25 +54,24 @@ export default function ToyFilter({ onSetFilter, filterBy }) {
     }
 
     return (
-        <section>
-            <form>
-                <div className="filter-container">
-                    <label htmlFor="name">Name</label>
-                    <input value={name} onChange={onNameChange} type="text" name="name" placeholder="Search..."></input>
-                </div>
-                <div className="filter-container">
-                    <label htmlFor="in-stock-all">All</label>
-                    <input onChange={onStockChange} id="in-stock-all" type="radio" name="in-stock" value="all" checked={inStock === 'all'}></input>
-                    <label htmlFor="in-stock-stock">Only in stock</label>
-                    <input onChange={onStockChange} id="in-stock-stock" type="radio" name="in-stock" value="true" checked={inStock === 'true'}></input>
-                    <label htmlFor="in-stock-out">Only out of stock</label>
-                    <input onChange={onStockChange} id="in-stock-out" type="radio" name="in-stock" value="false" checked={inStock === 'false'}></input>
-                </div>
-                <div className="filter-container">
-                    <LabelSelect labels={filterBy.labels} onSelectChange={onSelectChange} />
-                </div>
-                <div className="filter-container"></div>
-            </form>
-        </section>
+        <form>
+            <div className="filter-container">
+
+            <div className='search-bar'>
+                <input value={name} onChange={onNameChange} type="text" name="name" placeholder="Search..."></input>
+            </div>
+            <div>
+                <LabelSelect labels={filterBy.labels} onSelectChange={onSelectChange} />
+            </div>
+            </div>
+            <div className='in-stock-filter'>
+                <input onChange={onStockChange} id="in-stock-all" type="radio" name="in-stock" value="all" checked={inStock === 'all'}></input>
+                <label htmlFor="in-stock-all">All</label> |
+                <input onChange={onStockChange} id="in-stock-stock" type="radio" name="in-stock" value="true" checked={inStock === 'true'}></input>
+                <label htmlFor="in-stock-stock">In stock</label> |
+                <input onChange={onStockChange} id="in-stock-out" type="radio" name="in-stock" value="false" checked={inStock === 'false'}></input>
+                <label htmlFor="in-stock-out">Out of stock</label>
+            </div>
+        </form>
     )
 }

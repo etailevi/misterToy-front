@@ -1,0 +1,64 @@
+.toy-edit-container {
+    h2 {
+        font-size: rem(40px);
+        margin: rem(30px);
+        text-align: center;
+    }
+
+    .toy-edit {
+        text-align: center;
+        @include flex();
+        flex-direction: column;
+        gap: rem(30px);
+
+
+        .name-price-input {
+            input {
+                outline: 0.5px solid rgb(185, 187, 185);
+                border: none;
+                border-radius: rem(5px);
+                padding: rem(20px);
+                height: rem(72px);
+                width: rem(320px);
+                font-size: rem(17px);
+                background-color: transparent;
+
+                &:hover {
+                    outline: 1px solid rgb(10, 10, 10);
+                }
+
+                &:focus {
+                    outline: 2px solid rgb(13, 93, 232);
+                }
+            }
+        }
+
+        .form-btn {
+            outline: 0.5px solid rgb(185, 187, 185);
+            border: none;
+            border-radius: rem(5px);
+            padding: rem(20px);
+            height: rem(50px);
+            width: rem(100px);
+            margin: rem(5px);
+            font-size: rem(17px);
+            background-color: transparent;
+
+            &.close {
+                background-color: tomato;
+                color: white;
+            }
+
+            &.add-save {
+                background-color: greenyellow;
+            }
+
+            &:hover {
+                outline: 1px solid rgb(186, 186, 186);
+            }
+
+        }
+
+
+    }
+}

@@ -1,32 +1,37 @@
-.toy-index{
+.toy-index {
 
+    .control-panel {
+        @include flex();
+        @include wrap();
+        @include center();
+        margin: rem(30px);
 
+        .btn-add {
+            height: rem(70px);
+            margin-block-end: 20px;
+            margin-inline-end: rem(10px);
+        }
+    }
 
-    .paging-container{
+    .loader {
+        margin: auto;
+        position: absolute;
+        top: 48.5%;
+        left: 48.5%;
+        z-index: 1;
+    }
+
+    .paging-container {
         width: fit-content;
         margin: auto;
-        padding: rem(5px);
-        background-color: rgba(211, 211, 211, 0.2);
-        border-radius: rem(12px);
-        span {
-            margin-inline: rem(32px);
-            font-size: rem(25px);
-            font-weight: 700;
-        }
+
         button {
-            width: rem(30px);
-            height: rem(30px);
-            background-color: $clr3;
-            color: white;
-            margin: rem(2px);
+            font-size: rem(20px);
+            font-family: 'Varela Round', sans-serif;
+            font-weight: 700;
 
-            &:hover{
+            &:hover {
                 background-color: lighten($clr2, 3%);
-            }
-
-            &:disabled {
-                filter: brightness(85%);
-                color: rgb(66, 65, 65);
             }
         }
     }

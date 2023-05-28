@@ -10,7 +10,10 @@ import ToyFilter from '../cmps/toy-filter.jsx'
 import { ADD_TOY_TO_CART } from '../store/toy.reducer.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { loadToys, removeToy, setFilter } from '../store/toy.action.js'
-import { ToySort } from '../cmps/toy-sort.jsx'
+import ToySort from '../cmps/toy-sort.jsx'
+import Loader from '../cmps/loader.jsx'
+import ToyAddBtn from '../cmps/toy-add-btn.jsx'
+import CustomPagination from '../cmps/pagination.jsx'
 
 export default function ToyIndex() {
 
@@ -46,42 +49,44 @@ export default function ToyIndex() {
         setFilter({ ...filterBy, ...filter })
     }
 
-    function onChangePageIdx(diff) {
+    function onChangePageIdx(pages) {
         // const pageCount = toyService.getPages()
-        console.log('page count', pageCount)
-        console.log('filterBy.pageIdx', filterBy.pageIdx);
-        setNextButton(false)
-        setPrevButton(false)
+        // console.log('page count', pageCount)
+        // console.log('filterBy.pageIdx', filterBy.pageIdx);
+        // setNextButton(false)
+        // setPrevButton(false)
 
-        if (pageCount <= filterBy.pageIdx + diff) {
-            setNextButton(true)
-            return
-        } if (0 > filterBy.pageIdx + diff) {
-            setPrevButton(true)
-            return
-        }
+        // if (pageCount <= filterBy.pageIdx + diff) {
+        //     setNextButton(true)
+        //     return
+        // } if (0 > filterBy.pageIdx + diff) {
+        //     setPrevButton(true)
+        //     return
+        // }
 
-        const nextPageIdx = filterBy.pageIdx + diff
-        onSetFilter({ ...filterBy, pageIdx: nextPageIdx })
+        // const nextPageIdx = filterBy.pageIdx + diff
+        onSetFilter({ ...filterBy, pageIdx: pages })
     }
 
     return (
         <section className='toy-index view'>
-            <button><Link to={`/toy/edit`}>Add Toy</Link></button>
-            {isLoading && <div>Loading...</div>}
-            <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-            <ToySort sortBy={sortBy} setSortBy={setSortBy} />
+            <div className='control-panel'>
+                <ToyAddBtn />
+                <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+                <ToySort sortBy={sortBy} setSortBy={setSortBy} />
+            </div>
+            {isLoading && <Loader />}
             <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}
                 onEditToy={(toy) => navigate(`/toy/:${toy._id}`)}
             // addToCart={addToCart}
             />
-            <section className='paging-container'>
-                <button disabled={prevButton} onClick={() => onChangePageIdx(-1)}>-</button>
-                <span>{filterBy.pageIdx + 1}</span>
-                <button disabled={nextButton} onClick={() => onChangePageIdx(1)}>+</button>
-            </section>
+            <CustomPagination
+                filterBy={filterBy}
+                pageCount={pageCount}
+                onChangePageIdx={onChangePageIdx}
+            />
         </section>
     )
 }

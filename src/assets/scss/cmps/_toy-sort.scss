@@ -1,0 +1,14 @@
+.toy-sort {
+    @include flex();
+    @include wrap();
+    @include center();
+    @include column();
+    padding-block-start: rem(7px);
+    margin-inline-start: rem(13px);
+    .descending-checkbox {
+        @include flex();
+        gap: rem(5px);
+        margin-block-start: rem(14px);
+        font-size: rem(20px);
+    }
+}
